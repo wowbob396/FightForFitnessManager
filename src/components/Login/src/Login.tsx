@@ -19,6 +19,8 @@ const styles = createStyles({
     main: {
         width: 'auto',
         display: 'block',
+        marginLeft: 300,
+        marginRight: 300,
 
     },
     paper: {
@@ -32,10 +34,15 @@ const styles = createStyles({
 export default class Login extends Component {
     render() {
         return (
-            <main>
+            <main className={styles.main as React.CSSProperties}> 
                 <CssBaseline/>
                 <Paper>
-
+                    <Avatar>
+                        <LockOutlinedIcon/>
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign In
+                    </Typography>
                 </Paper>
             </main>
         );
