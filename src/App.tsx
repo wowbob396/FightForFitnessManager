@@ -5,11 +5,16 @@ import { Router } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'
 import './App.scss';
 
+const customHistory = createBrowserHistory();
+
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <Login/>
-    </div>
+    <Router history={customHistory}>
+      <Switch>
+        <Route path="/login" component={Login}/>
+        <Redirect from="/" to="/login" />
+      </Switch>
+    </Router>
   );
 }
 
