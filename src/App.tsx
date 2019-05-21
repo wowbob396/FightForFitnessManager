@@ -3,6 +3,8 @@ import Login from './components/Login';
 import { Redirect, Route, Switch } from 'react-router';
 import { Router } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'
+import Firebase, { FirebaseContext } from './components/Firebase/firebase';
+ 
 import './App.scss';
 
 const customHistory = createBrowserHistory();
