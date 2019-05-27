@@ -38,12 +38,9 @@ class Login extends Component<any,any> {
 
         console.log(email,password);
         
-        this.props.firebase
-            .doSignInWithEmailAndPassword(email, password)
-            .then(() =>{
-
-            })
-        
+        if (this.props.auth !== null) {
+            
+        }
 
     }
 
