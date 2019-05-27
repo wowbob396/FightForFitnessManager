@@ -19,6 +19,8 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
+    "react-with-firebase-auth": "^1.0.3",
+    "recompose": "^0.30.0",
     "typescript": "3.4.5"
   },
   "scripts": {

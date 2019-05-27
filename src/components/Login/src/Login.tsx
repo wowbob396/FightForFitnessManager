@@ -14,12 +14,39 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import './Login.scss';
 
 
+const INITIAL_STATE = {
+    email: '',
+    password: '',
+    error: null,
+}
 
 /**
  * Class for the login page that will handle authentication
  * into the site
  */
-class Login extends Component {
+class Login extends Component<any,any> {
+
+    constructor(props: any) {
+        super(props);
+
+        this.state = { ...INITIAL_STATE };
+    }
+
+    onSubmit = event => {
+
+        const { email, password } = this.state;
+
+        console.log(email,password);
+        
+        this.props.firebase
+            .doSignInWithEmailAndPassword(email, password)
+            .then(() =>{
+
+            })
+        
+
+    }
+
     render() {
         return (
             <main className="main"> 
@@ -31,7 +58,7 @@ class Login extends Component {
                     <Typography component="h1" variant="h5">
                         Sign In
                     </Typography>
-                    <form className="form">
+                    <form className="form" onSubmit={this.onSubmit}>
                          <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="email">Email</InputLabel>
                             <Input id="email" type="email" autoComplete="current-email"/>

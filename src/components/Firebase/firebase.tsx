@@ -28,6 +28,10 @@ const firebaseConfig = {
       }
 
       public doSignOut = () => this.auth.signOut();
+
+      public doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
+
+      doPasswordUpdate = password => this.auth.currentUser.updatePassword(password);
   }
 
 const FirebaseContext = React.createContext(null);  
