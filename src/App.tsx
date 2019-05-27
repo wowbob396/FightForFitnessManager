@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Login from './components/Login';
 import Home from './components/Home';
 import { Redirect, Route, Switch } from 'react-router';
@@ -11,6 +11,7 @@ import 'firebase/auth';
 import * as ROUTES from './constants/routes';
 import './App.scss';
 import FirebaseConfig from './components/Firebase/firebaseConfig';
+import PrivateRoute from './PrivateRoute';
 
 const customHistory = createBrowserHistory();
 
@@ -19,16 +20,23 @@ const firebaseApp = app.initializeApp(FirebaseConfig);
 const firebaseAppAuth = firebaseApp.auth();
 
 
-const App: React.FC = () => {
-  return (
-    <Router history={customHistory}>
-      <Switch>
-        <Route path={ROUTES.LOG_IN} render={() => <Login auth={firebaseAppAuth} />}/>
-        <Route path={ROUTES.HOME} component={Home}/>
-        <Redirect from="/" to={ROUTES.LOG_IN} />
-      </Switch>
-    </Router>
-  );
+class App extends Component {
+
+  state = { loading: true, authenticated: false, user: null };
+
+  render() {
+
+    const { authenticated, loading } = this.state;
+    return (
+      <Router history={customHistory}>
+        <Switch>
+
+          <PrivateRoute exact path="/" component={Home} authenticated={this.state.authenticated} />
+          <Route path={ROUTES.HOME} component={Home}/>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
-export default withFirebaseAuth({firebaseAppAuth})(App);
+export default App;
