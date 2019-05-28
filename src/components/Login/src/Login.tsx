@@ -35,10 +35,6 @@ class Login extends Component<any,any> {
 
     onSubmit = async event => {
 
-        
-        console.log(event.target.elements.email.value);
-        console.log(event.target.elements.password.value);
-        
         event.preventDefault();
         try {
             const user = await FirebaseApp
@@ -48,9 +44,6 @@ class Login extends Component<any,any> {
         } catch (error) {
             alert(error);
         }
-
-
-
     }
 
     render() {
