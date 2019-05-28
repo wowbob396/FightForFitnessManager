@@ -22,18 +22,45 @@ const firebaseAppAuth = firebaseApp.auth();
 
 class App extends Component {
 
+  componentWillMount() {
+    firebaseAppAuth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({
+          authenticated: true,
+          loading: false,
+          currentUser: user
+        });
+      } else {
+        this.setState({
+          authenticated: false,
+          loading: false,
+          currentUser: null
+        });
+      }
+    });
+  }
+
   state = { loading: true, authenticated: false, user: null };
 
   render() {
 
     const { authenticated, loading } = this.state;
+
+    if (loading) {
+      return <p>Loading..</p>;
+    }
+
     return (
       <Router history={customHistory}>
-        <Switch>
-
-          <PrivateRoute exact path="/" component={Home} authenticated={this.state.authenticated} />
-          <Route path={ROUTES.HOME} component={Home}/>
-        </Switch>
+        <div>
+          <PrivateRoute
+            exact
+            path="/"
+            component={Home}
+            authenticated={authenticated}
+          />
+          <Route exact path="/login" component={Login} />
+        </div>
       </Router>
     );
   }
