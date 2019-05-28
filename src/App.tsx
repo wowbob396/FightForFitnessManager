@@ -5,12 +5,8 @@ import { Redirect, Route, Switch } from 'react-router';
 import { Router } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import FirebaseApp from './components/Firebase/firebaseConfig';
-import withFirebaseAuth from 'react-with-firebase-auth';
-import app from 'firebase/app';
 import 'firebase/auth';
-import * as ROUTES from './constants/routes';
 import './App.scss';
-import FirebaseConfig from './components/Firebase/firebaseConfig';
 import PrivateRoute from './PrivateRoute';
 
 const customHistory = createBrowserHistory();
