@@ -8,11 +8,17 @@ import MenuIcon from '@material-ui/icons/Menu';
 import FirebaseApp from '../../Firebase/firebaseConfig';
 import './Home.scss';
 
+
+
 export default class Home extends Component {
+
+
 
     render() {
 
 
+
+      
         return(
             <div className="root">
             <AppBar position="static" >
