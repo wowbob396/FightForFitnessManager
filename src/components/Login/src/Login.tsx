@@ -11,15 +11,48 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FirebaseApp from '../../Firebase/firebaseConfig';
 import './Login.scss';
 
 
+const INITIAL_STATE = {
+    email: '',
+    password: '',
+    error: null,
+}
 
 /**
  * Class for the login page that will handle authentication
  * into the site
  */
-class Login extends Component {
+class Login extends Component<any,any> {
+
+    constructor(props: any) {
+        super(props);
+
+        this.state = { ...INITIAL_STATE };
+    }
+
+    onSubmit = async event => {
+
+        
+        console.log(event.target.elements.email.value);
+        console.log(event.target.elements.password.value);
+        
+        event.preventDefault();
+        try {
+            const user = await FirebaseApp
+            .auth()
+            .signInWithEmailAndPassword(event.target.elements.email.value,event.target.elements.password.value);
+            this.props.history.push("/");
+        } catch (error) {
+            alert(error);
+        }
+
+
+
+    }
+
     render() {
         return (
             <main className="main"> 
@@ -31,14 +64,14 @@ class Login extends Component {
                     <Typography component="h1" variant="h5">
                         Sign In
                     </Typography>
-                    <form className="form">
+                    <form className="form" onSubmit={this.onSubmit}>
                          <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="email">Email</InputLabel>
-                            <Input id="email" type="email" autoComplete="current-email"/>
+                            <Input id="email" name="email" type="email" autoComplete="current-email"/>
                         </FormControl>
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input id="password" type="password" autoComplete="current-password"/>
+                            <Input id="password" name="password" type="password" autoComplete="current-password"/>
                         </FormControl>
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
