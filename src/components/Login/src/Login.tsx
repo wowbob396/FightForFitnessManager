@@ -11,6 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FirebaseConfig from '../../Firebase/firebaseConfig';
 import './Login.scss';
 
 
@@ -32,15 +33,16 @@ class Login extends Component<any,any> {
         this.state = { ...INITIAL_STATE };
     }
 
-    onSubmit = event => {
+    onSubmit = async event => {
 
-        const { email, password } = this.state;
-
-        console.log(email,password);
         
-        if (this.props.auth !== null) {
-            
-        }
+        console.log(event.target.elements.email.value);
+        console.log(event.target.elements.password.value);
+        
+        event.preventDefault();
+
+        //const user = await app
+
 
     }
 
@@ -58,11 +60,11 @@ class Login extends Component<any,any> {
                     <form className="form" onSubmit={this.onSubmit}>
                          <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="email">Email</InputLabel>
-                            <Input id="email" type="email" autoComplete="current-email"/>
+                            <Input id="email" name="email" type="email" autoComplete="current-email"/>
                         </FormControl>
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input id="password" type="password" autoComplete="current-password"/>
+                            <Input id="password" name="password" type="password" autoComplete="current-password"/>
                         </FormControl>
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}

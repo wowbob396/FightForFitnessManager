@@ -1,3 +1,5 @@
+import firebase from "firebase";
+
 const FirebaseConfig = {
     apiKey: "AIzaSyAmTq4-KRemuMEDTDCpTy6WKJzq-D8867A",
     authDomain: "fightforfitnessflutter.firebaseapp.com",
