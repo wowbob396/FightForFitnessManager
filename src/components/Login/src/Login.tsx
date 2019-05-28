@@ -11,7 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FirebaseConfig from '../../Firebase/firebaseConfig';
+import FirebaseApp from '../../Firebase/firebaseConfig';
 import './Login.scss';
 
 
@@ -40,8 +40,15 @@ class Login extends Component<any,any> {
         console.log(event.target.elements.password.value);
         
         event.preventDefault();
+        try {
+            const user = await FirebaseApp
+            .auth()
+            .signInWithEmailAndPassword(event.target.elements.email.value,event.target.elements.password.value);
+            this.props.history.push("/");
+        } catch (error) {
+            alert(error);
+        }
 
-        //const user = await app
 
 
     }
