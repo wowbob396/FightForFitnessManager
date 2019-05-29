@@ -12,9 +12,14 @@ const FirebaseApp = app.initializeApp({
   });
 
 const databaseRef = FirebaseApp.firestore();
-const announcementRef = databaseRef.collection("announcements");
+const announcementCollection = databaseRef.collection("announcements");
 
-console.log(announcementRef);
+
+announcementCollection.get().then(
+  snapshot => {
+      console.log(snapshot.docs[0].data());
+  }
+);
 
 export default FirebaseApp;
-export { announcementRef };
+export { announcementCollection };
