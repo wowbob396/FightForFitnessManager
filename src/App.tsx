@@ -33,7 +33,7 @@ class App extends Component {
     });
   }
 
-  state = { loading: true, authenticated: false, user: null };
+  state = { loading: true, authenticated: false, currentUser: null };
 
   render() {
 
