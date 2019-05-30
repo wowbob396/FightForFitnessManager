@@ -1,15 +1,9 @@
-import { FETCH_ANNOUNCEMENT } from './types';
-import { announcementCollection } from '../components/Firebase/firebaseConfig';
+import { FETCH_ANNOUNCEMENT, FETCH_USER } from './types';
+import { announcementCollection, authRef } from '../components/Firebase/firebaseConfig';
 import Firebase from 'firebase'
 
 
 export const addAnnouncement = newAnnouncement => async dispatch => {
-
-    announcementCollection.get().then(
-        documents => {
-            console.log(documents.docs);
-        }
-    );
 
     let timestamp = Firebase.firestore.Timestamp.fromMillis(Date.now());
 
@@ -18,3 +12,21 @@ export const addAnnouncement = newAnnouncement => async dispatch => {
         date: timestamp,
     });
 };
+
+export const fetchUser = () => dispatch => {
+
+    authRef.onAuthStateChanged(user =>{
+        if (user) {
+            dispatch({
+                type: FETCH_USER,
+                payload: user,
+            });
+        } else {
+            dispatch({
+                type: FETCH_USER,
+                payload: null,
+            });
+        }
+    });
+
+}

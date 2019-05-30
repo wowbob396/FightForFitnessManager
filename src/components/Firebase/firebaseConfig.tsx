@@ -1,5 +1,6 @@
 import app from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/auth';
 
 const FirebaseApp = app.initializeApp({
     apiKey: "AIzaSyAmTq4-KRemuMEDTDCpTy6WKJzq-D8867A",
@@ -11,6 +12,7 @@ const FirebaseApp = app.initializeApp({
     appId: "1:1008445354039:web:80d1bddacf7e32b3"
   });
 
+const authRef = FirebaseApp.auth();
 const databaseRef = FirebaseApp.firestore();
 const announcementCollection = databaseRef.collection("announcements");
 
@@ -22,4 +24,4 @@ announcementCollection.get().then(
 );
 
 export default FirebaseApp;
-export { announcementCollection };
+export { announcementCollection, authRef };

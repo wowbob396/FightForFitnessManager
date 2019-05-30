@@ -7,30 +7,21 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import FirebaseApp from './components/Firebase/firebaseConfig';
 import 'firebase/auth';
 import './App.scss';
+import { connect } from "react-redux";
+import {fetchUser } from './actions';
 import PrivateRoute from './PrivateRoute';
+import { app } from 'firebase';
 
 const customHistory = createBrowserHistory();
-const firebaseAppAuth = FirebaseApp.auth();
 
+interface AppProps {
+  fetchUser(): void;
+}
 
-class App extends Component {
+class App extends Component<AppProps,any> {
 
   componentWillMount() {
-    firebaseAppAuth.onAuthStateChanged(user => {
-      if (user) {
-        this.setState({
-          authenticated: true,
-          loading: false,
-          currentUser: user
-        });
-      } else {
-        this.setState({
-          authenticated: false,
-          loading: false,
-          currentUser: null
-        });
-      }
-    });
+    this.props.fetchUser();
   }
 
   state = { loading: true, authenticated: false, currentUser: null };
@@ -59,4 +50,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, {fetchUser})(App);
