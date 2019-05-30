@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import FirebaseApp from '../../Firebase/firebaseConfig';
 import './Home.scss';
-
+import Firebase from 'firebase'
 
 
 export default class Home extends Component {
@@ -16,11 +16,14 @@ export default class Home extends Component {
 
     render() {
 
+      let timestamp = Firebase.firestore.Timestamp.fromMillis(Date.now());
 
+      let logOnButton;
 
-      
-        return(
-            <div className="root">
+      //TODO: conditionally render the login/logout button
+
+      return(
+          <div className="root">
             <AppBar position="static" >
               <Toolbar>
                 <IconButton  color="inherit" className="menuButton" aria-label="Menu">
@@ -29,7 +32,8 @@ export default class Home extends Component {
                 <Typography variant="h6" className="title" color="inherit">
                   Fight For Fitness
                 </Typography>
-                <Button color="inherit">Login</Button>
+
+                <Button color="inherit">Log Out</Button>
               </Toolbar>
             </AppBar>
           </div>

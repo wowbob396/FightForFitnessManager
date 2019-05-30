@@ -15,6 +15,7 @@
     "firebase": "^6.0.2",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
+    "react-animations": "^1.0.0",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
     "react-router": "^5.0.0",
@@ -23,6 +24,7 @@
     "react-with-firebase-auth": "^1.0.3",
     "recompose": "^0.30.0",
     "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "typescript": "3.4.5"
   },
