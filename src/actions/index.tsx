@@ -1,6 +1,8 @@
 import { FETCH_ANNOUNCEMENT } from './types';
 import { announcementCollection } from '../components/Firebase/firebaseConfig';
 import Firebase from 'firebase'
+
+
 export const addAnnouncement = newAnnouncement => async dispatch => {
 
     announcementCollection.get().then(

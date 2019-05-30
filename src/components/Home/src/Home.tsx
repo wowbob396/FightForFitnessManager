@@ -16,12 +16,7 @@ export default class Home extends Component {
 
     render() {
 
-      
-      console.log(Date.now());
-
       let timestamp = Firebase.firestore.Timestamp.fromMillis(Date.now());
-      console.log(timestamp);
-      console.log(Firebase.database.ServerValue.TIMESTAMP);
 
       let logOnButton;
 
