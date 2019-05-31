@@ -24,6 +24,7 @@ class App extends Component<AppProps,any> {
 
   componentWillMount() {
     this.props.fetchUser();
+    
 
   }
 
@@ -41,7 +42,7 @@ class App extends Component<AppProps,any> {
       <Router history={customHistory}>
         <div>
           <Route exact path="/login" component={Login} />
-          <Route exact path="/" component={requireAuth(Home)}/>
+          <Route exact path="/" component={requireAuth(Home,customHistory)}/>
         </div>
       </Router>
     );

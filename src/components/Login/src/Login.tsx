@@ -11,6 +11,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { connect } from "react-redux";
+import { logOut } from '../../../actions';
 import FirebaseApp from '../../Firebase/firebaseConfig';
 import './Login.scss';
 
@@ -92,4 +94,4 @@ class Login extends Component<any,any> {
     }
 }
 
-export default Login;
+export default connect(null, {})(Login);

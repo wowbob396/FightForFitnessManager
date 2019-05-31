@@ -8,9 +8,15 @@ import MenuIcon from '@material-ui/icons/Menu';
 import FirebaseApp from '../../Firebase/firebaseConfig';
 import './Home.scss';
 import Firebase from 'firebase'
+import { connect } from "react-redux";
+import * as actions from '../../../actions';
 
 
-export default class Home extends Component {
+interface HomeProps {
+  logOut(): void;
+}
+
+class Home extends Component<HomeProps, any> {
 
 
 
@@ -33,10 +39,19 @@ export default class Home extends Component {
                   Fight For Fitness
                 </Typography>
 
-                <Button color="inherit">Log Out</Button>
+                <Button color="inherit" onClick={this.props.logOut}>Log Out</Button>
               </Toolbar>
             </AppBar>
           </div>
         )
     }
 }
+
+const mapStateToProps = ({auth}) => {
+  return {
+    auth
+  };
+};
+
+
+export default connect(mapStateToProps , actions)(Home); 
