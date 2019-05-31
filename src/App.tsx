@@ -7,56 +7,45 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import FirebaseApp from './components/Firebase/firebaseConfig';
 import 'firebase/auth';
 import './App.scss';
+import { connect } from "react-redux";
+import {fetchUser } from './actions';
 import PrivateRoute from './PrivateRoute';
+import requireAuth from './components/Auth/requireAuth';
+import { app } from 'firebase';
 
 const customHistory = createBrowserHistory();
-const firebaseAppAuth = FirebaseApp.auth();
 
+interface AppProps {
+  fetchUser(): void;
+  
+}
 
-class App extends Component {
+class App extends Component<AppProps,any> {
 
   componentWillMount() {
-    firebaseAppAuth.onAuthStateChanged(user => {
-      if (user) {
-        this.setState({
-          authenticated: true,
-          loading: false,
-          currentUser: user
-        });
-      } else {
-        this.setState({
-          authenticated: false,
-          loading: false,
-          currentUser: null
-        });
-      }
-    });
+    this.props.fetchUser();
+
   }
 
   state = { loading: true, authenticated: false, currentUser: null };
 
   render() {
 
-    const { authenticated, loading } = this.state;
+    // const { authenticated, loading } = this.state;
 
-    if (loading) {
-      return <p>Loading..</p>;
-    }
+    // if (loading) {
+    //   return <p>Loading..</p>;
+    // }
 
     return (
       <Router history={customHistory}>
         <div>
-          <PrivateRoute
-            exact
-            path="/"
-            component={Home}
-            authenticated={authenticated}
-          />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/" component={requireAuth(Home)}/>
         </div>
       </Router>
     );
   }
 }
 
-export default App;
+export default connect(null, {fetchUser})(App);
