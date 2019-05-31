@@ -38,6 +38,11 @@ export const logIn = (email,password) => dispatch => {
         .catch(error => { alert(error)});
 }
 
+/**
+ * This action simply calls the signOut method
+ * for the firebase auth and updates the redux store to
+ * reflect the changes accordingly
+ */
 export const logOut = () => dispatch => {
     authRef
       .signOut()
