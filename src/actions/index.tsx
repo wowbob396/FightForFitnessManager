@@ -30,3 +30,21 @@ export const fetchUser = () => dispatch => {
     });
 
 }
+
+export const logIn = (email,password) => dispatch => {
+    authRef
+        .signInWithEmailAndPassword(email,password)
+        .then( result => {})
+        .catch(error => { alert(error)});
+}
+
+export const logOut = () => dispatch => {
+    authRef
+      .signOut()
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };

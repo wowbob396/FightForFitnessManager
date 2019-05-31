@@ -33,6 +33,17 @@ class Login extends Component<any,any> {
         this.state = { ...INITIAL_STATE };
     }
 
+    componentWillUpdate(nextProps) {
+        if (nextProps.auth) {
+            this.context.router.history.push("/");
+        }
+    }
+
+    /**
+     * This method is called when the user clicks log in
+     * the current values for the email and password are passed into
+     * an async firebase function to sign in the user
+     */
     onSubmit = async event => {
 
         event.preventDefault();
