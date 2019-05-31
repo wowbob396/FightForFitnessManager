@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router";
 
 interface AuthenticationProps {
     authenticated: boolean;
+    history: any;
 }
 
-export default ComposedComponent => {
+export default (ComposedComponent, history) => {
     class Authentication extends Component<AuthenticationProps, any> {
         static contextTypes = {
             router: PropTypes.object
@@ -14,19 +16,20 @@ export default ComposedComponent => {
 
         componentWillMount() {
             if (this.props.authenticated === null) {
-                this.context.router.history.push("/login");
+                this.props.history.push("/login");
             }
         }
         
         componentWillUpdate(nextProps) {
             if (!nextProps.authenticated) {
-                this.context.router.history.push("/login");
+
+                this.props.history.push("/login");
+
             }
         }
 
         render() {
 
-            console.log(this.props);
             if (this.props.authenticated) {
                 return <ComposedComponent {...this.props} />
             } else {
