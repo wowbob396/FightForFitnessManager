@@ -25,8 +25,10 @@ export default ComposedComponent => {
         }
 
         render() {
+
+            console.log(this.props);
             if (this.props.authenticated) {
-                <ComposedComponent {...this.props} />
+                return <ComposedComponent {...this.props} />
             } else {
                 return null;
             }

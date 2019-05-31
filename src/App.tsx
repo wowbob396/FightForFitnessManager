@@ -17,29 +17,31 @@ const customHistory = createBrowserHistory();
 
 interface AppProps {
   fetchUser(): void;
+  
 }
 
 class App extends Component<AppProps,any> {
 
   componentWillMount() {
     this.props.fetchUser();
+
   }
 
   state = { loading: true, authenticated: false, currentUser: null };
 
   render() {
 
-    const { authenticated, loading } = this.state;
+    // const { authenticated, loading } = this.state;
 
-    if (loading) {
-      return <p>Loading..</p>;
-    }
+    // if (loading) {
+    //   return <p>Loading..</p>;
+    // }
 
     return (
       <Router history={customHistory}>
         <div>
           <Route exact path="/login" component={Login} />
-          <Route exact path="/" component={requireAuth(ToDoList)}/>
+          <Route exact path="/" component={requireAuth(Home)}/>
         </div>
       </Router>
     );
