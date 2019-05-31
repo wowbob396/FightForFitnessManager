@@ -36,4 +36,6 @@ export default ComposedComponent => {
     const mapStateToProps = state => {
         return { authenticated: state.auth }
     }
+
+    return connect(mapStateToProps)(Authentication);
 }

@@ -10,6 +10,7 @@ import './App.scss';
 import { connect } from "react-redux";
 import {fetchUser } from './actions';
 import PrivateRoute from './PrivateRoute';
+import requireAuth from './components/Auth/requireAuth';
 import { app } from 'firebase';
 
 const customHistory = createBrowserHistory();
@@ -37,13 +38,8 @@ class App extends Component<AppProps,any> {
     return (
       <Router history={customHistory}>
         <div>
-          <PrivateRoute
-            exact
-            path="/"
-            component={Home}
-            authenticated={authenticated}
-          />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/" component={requireAuth(ToDoList)}/>
         </div>
       </Router>
     );
