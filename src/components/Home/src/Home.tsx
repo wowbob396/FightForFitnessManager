@@ -10,6 +10,7 @@ import './Home.scss';
 import Firebase from 'firebase'
 import { connect } from "react-redux";
 import * as actions from '../../../actions';
+import AnnouncementTable from './AnnouncementTable';
 
 
 interface HomeProps {
@@ -22,9 +23,6 @@ class Home extends Component<HomeProps, any> {
 
     render() {
 
-      let timestamp = Firebase.firestore.Timestamp.fromMillis(Date.now());
-
-      let logOnButton;
 
       //TODO: conditionally render the login/logout button
 
@@ -42,6 +40,10 @@ class Home extends Component<HomeProps, any> {
                 <Button color="inherit" onClick={this.props.logOut}>Log Out</Button>
               </Toolbar>
             </AppBar>
+
+            <div className="table">
+
+            </div>
           </div>
         )
     }
@@ -54,4 +56,4 @@ const mapStateToProps = ({auth}) => {
 };
 
 
-export default connect(mapStateToProps , actions)(Home); 
+export default connect(mapStateToProps, actions)(Home); 

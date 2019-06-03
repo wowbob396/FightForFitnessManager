@@ -8,6 +8,10 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 
+const createData = (text,date) => {
+    return { text, date };
+}
+
 const AnnouncementTable = () => {
 
     return (
@@ -23,3 +27,5 @@ const AnnouncementTable = () => {
         </Paper>
     );
 }
+
+export default AnnouncementTable;
