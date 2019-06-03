@@ -7,27 +7,26 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import MaterialTable, { Column } from 'material-table';
-
 
 const createData = (text,date) => {
     return { text, date };
 }
 
-interface AnnouncementTableProps {
-    columns: Column[],
-    data: any
-}
-
-const AnnouncementTable: React.SFC<AnnouncementTableProps> = (props) => {
+const AnnouncementTable = () => {
 
     return (
         <Paper>
-            <MaterialTable
-                title="Announcements"
-                columns={props.columns}
-                data={props.data}
-            />
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell align="left"> Announcement </TableCell>
+                        <TableCell align="left"> Date </TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    
+                </TableBody>
+            </Table>
         </Paper>
     );
 }
