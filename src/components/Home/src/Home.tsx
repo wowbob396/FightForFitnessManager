@@ -16,6 +16,9 @@ import { Column } from 'material-table';
 
 interface HomeProps {
   logOut(): void;
+  fetchUser(): void;
+  auth: Firebase.User;
+
 }
 
 const columns: Column[] = [
@@ -41,11 +44,12 @@ const data = [
 
 class Home extends Component<HomeProps, any> {
 
-
+    
 
     render() {
 
-
+      console.log(this.props.auth.email);
+      console.log(this.state);
       //TODO: conditionally render the login/logout button
 
       return(
@@ -64,7 +68,7 @@ class Home extends Component<HomeProps, any> {
             </AppBar>
 
             <div className="table">
-              <AnnouncementTable columns={columns} data={data}/>
+              <AnnouncementTable data={data}/>
             </div>
           </div>
         )
