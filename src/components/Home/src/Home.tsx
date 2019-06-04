@@ -33,13 +33,16 @@ class Home extends Component<HomeProps, any> {
         data: []
       }
     }
-    componentWillMount() {
-      console.log(this.props.announcements);
-    }
 
     render() {
+      console.log(this.props.announcements);
 
-      //console.log(this.props);
+      for (let i = 0;i < this.props.announcements.length; i++) {
+        console.log(this.props.announcements[i].data());
+        this.state.data.push(this.props.announcements[i].data());
+      }
+
+      console.log(this.state);
       //TODO: conditionally render the login/logout button
 
       return(
