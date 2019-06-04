@@ -3,7 +3,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import { Redirect, Route, Switch } from 'react-router';
 import { Router } from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory';
+import {createBrowserHistory} from "history"
 import FirebaseApp from './components/Firebase/firebaseConfig';
 import 'firebase/auth';
 import './App.scss';

@@ -5,19 +5,19 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import FirebaseApp from '../../Firebase/firebaseConfig';
 import './Home.scss';
 import Firebase from 'firebase'
 import { connect } from "react-redux";
 import * as actions from '../../../actions';
 import AnnouncementTable from './AnnouncementTable';
-import { Column } from 'material-table';
+import AnnouncementInput from './AnnouncementInput';
+import Grid, { GridSpacing } from '@material-ui/core/Grid';
 
 
 interface HomeProps {
   logOut(): void;
   fetchUser(): void;
-  addAnnouncement(): void;
+  addAnnouncement(newAnnouncement: string): void;
   auth: Firebase.User;
   announcements: any[];
 }
@@ -35,19 +35,16 @@ class Home extends Component<HomeProps, any> {
     }
 
     render() {
-      console.log(this.props.announcements);
 
       for (let i = 0;i < this.props.announcements.length; i++) {
-        console.log(this.props.announcements[i].data());
         this.state.data.push(this.props.announcements[i].data());
       }
 
-      console.log(this.state);
       //TODO: conditionally render the login/logout button
 
       return(
           <div className="root">
-            <AppBar position="static" >
+            <AppBar>
               <Toolbar>
                 <IconButton  color="inherit" className="menuButton" aria-label="Menu">
                   <MenuIcon />
@@ -59,10 +56,15 @@ class Home extends Component<HomeProps, any> {
                 <Button color="inherit" onClick={this.props.logOut}>Log Out</Button>
               </Toolbar>
             </AppBar>
+            <Grid container spacing={8} className="grid">
 
-            <div className="table">
-              <AnnouncementTable data={this.state.data}/>
-            </div>
+              <Grid item xs={12} className="textarea">
+                <AnnouncementInput submitMethod={this.props.addAnnouncement} />
+              </Grid>
+              <Grid item xs={12}>
+                <AnnouncementTable data={this.state.data}/>
+              </Grid>
+            </Grid>
           </div>
         )
     }
