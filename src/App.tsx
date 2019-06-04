@@ -8,7 +8,7 @@ import FirebaseApp from './components/Firebase/firebaseConfig';
 import 'firebase/auth';
 import './App.scss';
 import { connect } from "react-redux";
-import {fetchUser } from './actions';
+import { fetchUser,  getAnnouncements } from './actions';
 import PrivateRoute from './PrivateRoute';
 import requireAuth from './components/Auth/requireAuth';
 import { app } from 'firebase';
@@ -17,12 +17,14 @@ const customHistory = createBrowserHistory();
 
 interface AppProps {
   fetchUser(): void;
+  getAnnouncements(): void;
 }
 
 class App extends Component<AppProps,any> {
 
   componentWillMount() {
     this.props.fetchUser();
+    this.props.getAnnouncements();
   }
 
   state = { loading: true, authenticated: false, currentUser: null };
@@ -46,4 +48,4 @@ class App extends Component<AppProps,any> {
   }
 }
 
-export default connect(null, { fetchUser })(App);
+export default connect(null, { fetchUser, getAnnouncements })(App);
