@@ -2,6 +2,22 @@ import { FETCH_ANNOUNCEMENT, FETCH_USER } from './types';
 import { Firestore, authRef } from '../components/Firebase/firebaseConfig';
 import Firebase from 'firebase'
 
+export const getAnnouncements = () => async dispatch => {
+    Firestore.get()
+        .then(res =>{
+            console.log(res.docs[0].data());
+            dispatch({
+                type: FETCH_ANNOUNCEMENT,
+                payload: res.docs,
+            });
+        })
+        .catch(error => {
+            dispatch({
+                type: FETCH_ANNOUNCEMENT,
+                payload: null,
+            });
+        });
+};
 
 export const addAnnouncement = newAnnouncement => async dispatch => {
 
@@ -11,11 +27,19 @@ export const addAnnouncement = newAnnouncement => async dispatch => {
         text: newAnnouncement,
         date: timestamp,
     });
+
+    Firestore.get()
+        .then( res => {
+            console.log(res);
+        })
+        .catch(error => {
+            alert(error);
+        });
 };
 
 export const fetchUser = () => dispatch => {
 
-    authRef.onAuthStateChanged(user =>{
+    authRef.onAuthStateChanged(user => {
         if (user) {
             dispatch({
                 type: FETCH_USER,

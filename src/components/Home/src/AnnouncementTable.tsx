@@ -21,6 +21,14 @@ interface TableProps {
 
 const AnnouncementTable: React.SFC<TableProps> = (props: TableProps) => {
 
+    console.log(props);
+    let cells;
+
+    props.data.map(data => {
+        console.log(data.date);
+        console.log(data.text);
+    });
+
     return (
         <Paper className="paper">
             <Table>
@@ -31,7 +39,14 @@ const AnnouncementTable: React.SFC<TableProps> = (props: TableProps) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    
+                 {
+                     props.data.map((announcement, index) => {
+                        return <TableRow key={index}>
+                            <TableCell>{announcement.text}</TableCell>
+                            <TableCell>{new Date(announcement.date.seconds).toUTCString()}</TableCell>
+                        </TableRow>
+                    })
+                 }   
                 </TableBody>
             </Table>
         </Paper>
