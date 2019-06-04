@@ -1,4 +1,5 @@
 import { FETCH_ANNOUNCEMENT } from '../actions/types';
+import { Firestore } from '../components/Firebase/firebaseConfig';
 
 const INITIAL_STATE = {
     announcements: null,

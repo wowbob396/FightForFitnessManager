@@ -1,5 +1,5 @@
 import { FETCH_ANNOUNCEMENT, FETCH_USER } from './types';
-import { announcementCollection, authRef } from '../components/Firebase/firebaseConfig';
+import { Firestore, authRef } from '../components/Firebase/firebaseConfig';
 import Firebase from 'firebase'
 
 
@@ -7,7 +7,7 @@ export const addAnnouncement = newAnnouncement => async dispatch => {
 
     let timestamp = Firebase.firestore.Timestamp.fromMillis(Date.now());
 
-    announcementCollection.add({
+    Firestore.add({
         text: newAnnouncement,
         date: timestamp,
     });
