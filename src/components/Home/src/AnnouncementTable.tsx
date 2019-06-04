@@ -43,7 +43,7 @@ const AnnouncementTable: React.SFC<TableProps> = (props: TableProps) => {
                      props.data.map((announcement, index) => {
                         return <TableRow key={index}>
                             <TableCell>{announcement.text}</TableCell>
-                            <TableCell>{new Date(announcement.date.seconds).toUTCString()}</TableCell>
+                            <TableCell>{announcement.date.toDate().toString()}</TableCell>
                         </TableRow>
                     })
                  }   
