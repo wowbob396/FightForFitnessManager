@@ -3,7 +3,7 @@ import { Firestore, authRef } from '../components/Firebase/firebaseConfig';
 import Firebase from 'firebase'
 
 export const getAnnouncements = () => async dispatch => {
-    Firestore.get()
+    Firestore.orderBy('date',"desc").get()
         .then(res =>{
             console.log(res.docs[0].data());
             dispatch({

@@ -1,6 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import { forStatement } from '@babel/types';
 
 const FirebaseApp = app.initializeApp({
     apiKey: "AIzaSyAmTq4-KRemuMEDTDCpTy6WKJzq-D8867A",
@@ -16,12 +17,6 @@ const authRef = FirebaseApp.auth();
 const databaseRef = FirebaseApp.firestore();
 const Firestore = databaseRef.collection("announcements");
 
-
-Firestore.get().then(
-  snapshot => {
-      console.log(snapshot.docs[0].data());
-  }
-);
 
 export default FirebaseApp;
 export { Firestore, authRef };
