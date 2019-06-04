@@ -48,8 +48,7 @@ class Home extends Component<HomeProps, any> {
 
     render() {
 
-      console.log(this.props.auth.email);
-      console.log(this.state);
+      console.log(this.props);
       //TODO: conditionally render the login/logout button
 
       return(
@@ -75,9 +74,10 @@ class Home extends Component<HomeProps, any> {
     }
 }
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = ({auth, announcements}) => {
   return {
-    auth
+    auth,
+    announcements
   };
 };
 
