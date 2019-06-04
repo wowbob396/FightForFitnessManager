@@ -10,22 +10,45 @@ import './Home.scss';
 import Firebase from 'firebase'
 import { connect } from "react-redux";
 import * as actions from '../../../actions';
+import AnnouncementTable from './AnnouncementTable';
+import { Column } from 'material-table';
 
 
 interface HomeProps {
   logOut(): void;
+  fetchUser(): void;
+  auth: Firebase.User;
+
 }
+
+const columns: Column[] = [
+  { title: 'Name', field: 'name' },
+  { title: 'Surname', field: 'surname' },
+  { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
+  {
+    title: 'Birth Place',
+    field: 'birthCity',
+    lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+  },
+];
+
+const data = [
+  { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
+  {
+    name: 'Zerya Betül',
+    surname: 'Baran',
+    birthYear: 2017,
+    birthCity: 34,
+  },
+];
 
 class Home extends Component<HomeProps, any> {
 
-
+    
 
     render() {
 
-      let timestamp = Firebase.firestore.Timestamp.fromMillis(Date.now());
-
-      let logOnButton;
-
+      console.log(this.props);
       //TODO: conditionally render the login/logout button
 
       return(
@@ -42,16 +65,21 @@ class Home extends Component<HomeProps, any> {
                 <Button color="inherit" onClick={this.props.logOut}>Log Out</Button>
               </Toolbar>
             </AppBar>
+
+            <div className="table">
+              <AnnouncementTable data={data}/>
+            </div>
           </div>
         )
     }
 }
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = ({auth, announcements}) => {
   return {
-    auth
+    auth,
+    announcements
   };
 };
 
 
-export default connect(mapStateToProps , actions)(Home); 
+export default connect(mapStateToProps, actions)(Home); 

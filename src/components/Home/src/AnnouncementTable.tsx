@@ -6,15 +6,29 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+// import { createStyles, makeStyles,  } from '@material-ui/styles';
+// import { Theme } from '@material-ui/core/styles';
 
+import './AnnouncementTable.scss';
 
-const AnnouncementTable = () => {
+const createData = (text,date) => {
+    return { text, date };
+}
+
+interface TableProps {
+    data: any[];
+}
+
+const AnnouncementTable: React.SFC<TableProps> = (props: TableProps) => {
 
     return (
-        <Paper>
+        <Paper className="paper">
             <Table>
                 <TableHead>
-
+                    <TableRow>
+                        <TableCell align="left"> Announcement </TableCell>
+                        <TableCell align="left"> Date </TableCell>
+                    </TableRow>
                 </TableHead>
                 <TableBody>
                     
@@ -23,3 +37,5 @@ const AnnouncementTable = () => {
         </Paper>
     );
 }
+
+export default AnnouncementTable;

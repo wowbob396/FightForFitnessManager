@@ -17,15 +17,12 @@ const customHistory = createBrowserHistory();
 
 interface AppProps {
   fetchUser(): void;
-  
 }
 
 class App extends Component<AppProps,any> {
 
   componentWillMount() {
     this.props.fetchUser();
-    
-
   }
 
   state = { loading: true, authenticated: false, currentUser: null };
@@ -49,4 +46,4 @@ class App extends Component<AppProps,any> {
   }
 }
 
-export default connect(null, {fetchUser})(App);
+export default connect(null, { fetchUser })(App);
