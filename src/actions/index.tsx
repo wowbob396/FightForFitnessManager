@@ -27,14 +27,6 @@ export const addAnnouncement = newAnnouncement => async dispatch => {
         text: newAnnouncement,
         date: timestamp,
     });
-
-    Firestore.get()
-        .then( res => {
-            console.log(res);
-        })
-        .catch(error => {
-            alert(error);
-        });
 };
 
 export const fetchUser = () => dispatch => {
