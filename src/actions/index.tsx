@@ -5,7 +5,6 @@ import Firebase from 'firebase'
 export const getAnnouncements = () => async dispatch => {
     Firestore.orderBy('date',"desc").get()
         .then(res =>{
-            console.log(res.docs[0].data());
             dispatch({
                 type: FETCH_ANNOUNCEMENT,
                 payload: res.docs,
