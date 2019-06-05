@@ -34,6 +34,7 @@ class Home extends Component<HomeProps, any> {
       }
     }
 
+
     render() {
 
       for (let i = 0;i < this.props.announcements.length; i++) {
