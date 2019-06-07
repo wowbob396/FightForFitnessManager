@@ -28,6 +28,10 @@ export const addAnnouncement = newAnnouncement => async dispatch => {
     });
 };
 
+export const deleteAnnouncement = id => async dispatch => {
+    
+}
+
 export const fetchUser = () => dispatch => {
 
     authRef.onAuthStateChanged(user => {
