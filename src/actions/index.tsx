@@ -29,7 +29,12 @@ export const addAnnouncement = newAnnouncement => async dispatch => {
 };
 
 export const deleteAnnouncement = id => async dispatch => {
-    
+    console.log("called!");
+    Firestore.doc(id).delete().then(res => {
+        console.log("Successfully deleted!");
+    }).catch(error => {
+        console.log(error);
+    })
 }
 
 export const fetchUser = () => dispatch => {
