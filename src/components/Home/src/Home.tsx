@@ -13,7 +13,6 @@ import AnnouncementTable from './AnnouncementTable';
 import AnnouncementInput from './AnnouncementInput';
 import Grid, { GridSpacing } from '@material-ui/core/Grid';
 
-
 interface HomeProps {
   logOut(): void;
   fetchUser(): void;
@@ -21,8 +20,6 @@ interface HomeProps {
   auth: Firebase.User;
   announcements: any[];
 }
-
-
 
 class Home extends Component<HomeProps, any> {
 
@@ -38,9 +35,12 @@ class Home extends Component<HomeProps, any> {
     render() {
 
       for (let i = 0; i < this.props.announcements.length; i++) {
-        this.state.data.push(this.props.announcements[i].data());
+       
+        let data = this.props.announcements[i].data();
+        data['id'] = this.props.announcements[i].id;
+        this.state.data.push(data);
       }
-
+    
       //TODO: conditionally render the login/logout button
 
       return(
